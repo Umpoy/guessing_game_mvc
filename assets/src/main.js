@@ -7,13 +7,7 @@ function initialize() {
 }
 
 function assignClickHandlers() {
-    $('.reset').on('click', function () {
-        $('input').val('');
-        $('.reset').text('Reset');
-        $('#displayText').text('Guess a number between 1 - 100')
-        hiddenNum = getRandomNum();
-        console.log(hiddenNum);
-    });
+    $('.reset').on('click', resetGame);
     $('input').keydown(function (event) {
         if (event.which === 13) {
             guessSubmited();
@@ -48,4 +42,12 @@ function result(string) {
     setTimeout(function () {
         $('h3').removeClass('shake');
     }, 1000);
+}
+
+function resetGame() {
+    $('input').val('');
+    $('.reset').text('Reset');
+    $('#displayText').text('Guess a number between 1 - 100')
+    hiddenNum = getRandomNum();
+    console.log(hiddenNum);
 }
