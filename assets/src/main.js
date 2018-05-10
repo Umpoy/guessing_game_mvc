@@ -13,6 +13,11 @@ function assignClickHandlers() {
         hiddenNum = getRandomNum();
         console.log(hiddenNum);
     });
+    $('input').keydown(function (event) {
+        if (event.which === 13) {
+            guessSubmited();
+        }
+    })
     $('.guess').on('click', guessSubmited);
     console.log(hiddenNum);
 }
@@ -23,11 +28,22 @@ function getRandomNum() {
 
 function guessSubmited() {
     if ($('input').val() > hiddenNum) {
-        $('.displayText').text('to high')
+        result('To High!!!');
+
     } else if ($('input').val() < hiddenNum) {
-        $('.displayText').text('to low')
+        result('To Low!!!')
     } else {
-        $('.displayText').text('you guess it');
+        result('You guessed it!!!')
+    }
+}
+
+function result(string) {
+    $('#displayText').text(string);
+    if (string === 'You guessed it!!!') {
         $('.reset').text('Play Again?');
     }
+    $('#displayText').addClass('shake');
+    setTimeout(function () {
+        $('#displayText').removeClass('shake');
+    }, 1000);
 }
