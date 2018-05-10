@@ -10,6 +10,7 @@ function assignClickHandlers() {
     $('.reset').on('click', function () {
         $('input').val('');
         $('.reset').text('Reset');
+        $('#displayText').text('Guess a number between 1 - 100')
         hiddenNum = getRandomNum();
         console.log(hiddenNum);
     });
@@ -27,13 +28,14 @@ function getRandomNum() {
 }
 
 function guessSubmited() {
-    if ($('input').val() > hiddenNum) {
+    if ($('input').val() < 1 || $('input').val() > 100) {
+        result('Invalid Please Enter a Number Between 1 -100!!!')
+    } else if ($('input').val() > hiddenNum) {
         result('To High!!!');
-
     } else if ($('input').val() < hiddenNum) {
-        result('To Low!!!')
+        result('To Low!!!');
     } else {
-        result('You guessed it!!!')
+        result('You guessed it!!!');
     }
 }
 
@@ -42,8 +44,8 @@ function result(string) {
     if (string === 'You guessed it!!!') {
         $('.reset').text('Play Again?');
     }
-    $('#displayText').addClass('shake');
+    $('h3').addClass('shake');
     setTimeout(function () {
-        $('#displayText').removeClass('shake');
+        $('h3').removeClass('shake');
     }, 1000);
 }
