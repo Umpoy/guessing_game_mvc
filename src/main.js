@@ -4,14 +4,17 @@ $(document).ready(initialize());
 
 function initialize() {
     assignClickHandlers();
-    console.log(hiddenNum)
 }
 
 function assignClickHandlers() {
     $('.reset').on('click', function () {
-        //needs to reset game
+        $('input').val('');
+        $('.reset').text('Reset');
+        hiddenNum = getRandomNum();
+        console.log(hiddenNum);
     });
     $('.guess').on('click', guessSubmited);
+    console.log(hiddenNum);
 }
 
 function getRandomNum() {
@@ -19,12 +22,12 @@ function getRandomNum() {
 }
 
 function guessSubmited() {
-    console.log($('input').val());
     if ($('input').val() > hiddenNum) {
         $('.displayText').text('to high')
     } else if ($('input').val() < hiddenNum) {
         $('.displayText').text('to low')
     } else {
-        $('.displayText').text('you guess it')
+        $('.displayText').text('you guess it');
+        $('.reset').text('Play Again?');
     }
 }
